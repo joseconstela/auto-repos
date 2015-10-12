@@ -6,10 +6,17 @@ _arRollBackPwd() {
     cd $_ARPWD;
 }
 
-_arGitAction() {
-
+_arAnyAction() {
     echo "Folder" `pwd` "..."
+    echo "  ^ " $@
+    echo ""
+    $@
+    echo ""
+    echo ""
+}
 
+_arGitAction() {
+    echo "Folder" `pwd` "..."
     if [ -f ".git/config" ]; then
         echo "  ^ " $@
         echo ""
@@ -17,15 +24,12 @@ _arGitAction() {
     else
         echo "  ^ ignoring"
     fi
-
     echo ""
     echo ""
 }
 
 _arNodeAction() {
-
     echo "Folder" `pwd` "..."
-
     if [ -f "package.json" ]; then
         echo "  ^ " $@
         echo ""
@@ -33,7 +37,6 @@ _arNodeAction() {
     else
         echo "  ^ ignoring"
     fi
-
     echo ""
     echo ""
 }
@@ -62,7 +65,29 @@ _arGco() {
     _arRollBackPwd
 }
 
+_arA() {
+    _arSavePwd
+    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arNodeAction $@; done;
+    _arRollBackPwd
+}
+
+_arN() {
+    _arSavePwd
+    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arAnyAction $@; done;
+    _arRollBackPwd
+}
+
+_arG() {
+    _arSavePwd
+    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arGitAction $@; done;
+    _arRollBackPwd
+}
+
 alias arni=_arNi
 alias arnu=_arNu
 alias argp=_arGp
 alias argco=_arGco
+
+alias ara=_arA
+alias arn=_arN
+alias arg=_arG
