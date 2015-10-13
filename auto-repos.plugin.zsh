@@ -67,13 +67,13 @@ _arGco() {
 
 _arA() {
     _arSavePwd
-    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arNodeAction $@; done;
+    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arAnyAction $@; done;
     _arRollBackPwd
 }
 
 _arN() {
     _arSavePwd
-    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arAnyAction $@; done;
+    find . -maxdepth 1 -type d | while read -r line; do cd "$_ARPWD/$line" && _arNodeAction $@; done;
     _arRollBackPwd
 }
 
