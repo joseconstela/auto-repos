@@ -15,4 +15,6 @@ Originally designed as an [oh-my-zsh plugin](https://github.com/robbyrussell/oh-
 * `arni` runs `npm install`
 * `arnu` runs `npm update`
 * `argp` runs `git pull`
+* `arnl github` grabs the list of package.json dependencies, and runs `npm link <depName>` where its name or repo's url matches `github` - in the current folder
+* `arnla github` same as `arnl` but executes in all subfolders
 * `argco <branch>` runs `git checkout` to the specified branch
