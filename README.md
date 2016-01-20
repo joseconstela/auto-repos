@@ -1,4 +1,4 @@
-# zsh auto-repo's plugin
+# auto-repo aliases
 
 Aliases to manage large projects with many git, nodejs or bower apps directories, so you don't need to execute repetitive commands.
 
